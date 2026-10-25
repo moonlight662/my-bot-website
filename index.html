@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your WhatsApp Bot</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 400px; width: 100%; text-align: center; }
+        h1 { color: #128C7E; margin-bottom: 10px; }
+        p { color: #666; line-height: 1.5; margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; color: #333; font-weight: bold; }
+        input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+        input:focus { border-color: #25D366; outline: none; }
+        button { width: 100%; padding: 14px; background-color: #25D366; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        button:hover { background-color: #1DA851; }
+        #successMessage { display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; color: #155724; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Connect Your WhatsApp Bot 🤖</h1>
+        <p>Enter your phone number to proceed with the payment of KES 500.</p>
+        
+        <div class="input-group">
+            <label for="phoneNumber">WhatsApp Number</label>
+            <input type="tel" id="phoneNumber" placeholder="e.g., 254711575309" required>
+        </div>
+
+        <button onclick="processPayment()" id="payBtn">Pay Now (KES 500)</button>
+
+        <div id="successMessage">
+            <strong>✅ Payment Initiated!</strong><br><br>
+            Please check your phone to complete the M-Pesa transaction. Once paid, the owner will send your <strong>Pairing Code</strong> to you on WhatsApp shortly.
+        </div>
+    </div>
+
+    <script>
+        function processPayment() {
+            const phone = document.getElementById('phoneNumber').value;
+            const payBtn = document.getElementById('payBtn');
+            const successMessage = document.getElementById('successMessage');
+
+            // Basic validation for Kenyan numbers
+            if (!phone.startsWith('254') || phone.length !== 12) {
+                alert("Please enter a valid Kenyan number starting with 254 (e.g., 254711575309)");
+                return;
+            }
+
+            // Change button state to simulate processing
+            payBtn.innerText = "Processing...";
+            payBtn.disabled = true;
+            payBtn.style.backgroundColor = "#ccc";
+
+            // Simulate a 2-second delay before showing success
+            setTimeout(() => {
+                payBtn.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Note: In a real app, this is where you would integrate M-Pesa STK Push
+                // For now, we just show a message to the user.
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
+
