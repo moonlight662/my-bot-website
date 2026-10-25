@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,37 +8,63 @@
         * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; padding: 20px; }
         .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 400px; width: 100%; text-align: center; }
-        h1 { color: #128C7E; margin-bottom: 10px; }
-        p { color: #666; line-height: 1.5; margin-bottom: 20px; }
+        h1 { color: #128C7E; margin-bottom: 10px; font-size: 24px; }
+        p { color: #555; line-height: 1.5; margin-bottom: 20px; font-size: 15px; }
+        .highlight { background: #e8f5e9; padding: 10px; border-radius: 8px; font-weight: bold; color: #2e7d32; display: inline-block; margin: 10px 0; }
         .input-group { margin-bottom: 20px; text-align: left; }
         label { display: block; margin-bottom: 8px; color: #333; font-weight: bold; }
         input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
         input:focus { border-color: #25D366; outline: none; }
         button { width: 100%; padding: 14px; background-color: #25D366; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
         button:hover { background-color: #1DA851; }
-        #successMessage { display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; color: #155724; border-radius: 8px; }
+        #successMessage { display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; color: #155724; border-radius: 8px; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <h1>Connect Your WhatsApp Bot 🤖</h1>
-        <p>Enter your phone number to proceed with the payment of KES 500.</p>
+        <h1>🤖 WhatsApp Bot Setup</h1>
+        
+        <p>Follow the steps below to activate your bot instantly.</p>
+        
+        <p><strong>Step 1:</strong> Send <strong>KES 500</strong> via M-Pesa to:</p>
+        <div class="highlight">07 0183 476842 (Bena)</div>
+        
+        <p><strong>Step 2:</strong> Enter your WhatsApp number below so we can send your Pairing Code.</p>
         
         <div class="input-group">
-            <label for="phoneNumber">WhatsApp Number</label>
+            <label for="phoneNumber">Your WhatsApp Number</label>
             <input type="tel" id="phoneNumber" placeholder="e.g., 254711575309" required>
         </div>
 
-        <button onclick="processPayment()" id="payBtn">Pay Now (KES 500)</button>
+        <button onclick="processPayment()" id="payBtn">I Have Paid</button>
 
         <div id="successMessage">
-            <strong>✅ Payment Initiated!</strong><br><br>
-            Please check your phone to complete the M-Pesa transaction. Once paid, the owner will send your <strong>Pairing Code</strong> to you on WhatsApp shortly.
+            ✅ Thank you! We are verifying your payment. Your Pairing Code will be sent to your WhatsApp shortly.
         </div>
     </div>
 
     <script>
         function processPayment() {
             const phone = document.getElementById('phoneNumber').value;
-            const payBtn = d
+            const payBtn = document.getElementById('payBtn');
+            const successMessage = document.getElementById('successMessage');
+
+            if (!phone || phone.length < 10) {
+                alert("Please enter a valid WhatsApp number.");
+                return;
+            }
+
+            payBtn.innerText = "Verifying...";
+            payBtn.disabled = true;
+            payBtn.style.backgroundColor = "#ccc";
+
+            setTimeout(() => {
+                payBtn.style.display = 'none';
+                successMessage.style.display = 'block';
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
