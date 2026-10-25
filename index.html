@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,31 +41,4 @@
     <script>
         function processPayment() {
             const phone = document.getElementById('phoneNumber').value;
-            const payBtn = document.getElementById('payBtn');
-            const successMessage = document.getElementById('successMessage');
-
-            // Basic validation for Kenyan numbers
-            if (!phone.startsWith('254') || phone.length !== 12) {
-                alert("Please enter a valid Kenyan number starting with 254 (e.g., 254711575309)");
-                return;
-            }
-
-            // Change button state to simulate processing
-            payBtn.innerText = "Processing...";
-            payBtn.disabled = true;
-            payBtn.style.backgroundColor = "#ccc";
-
-            // Simulate a 2-second delay before showing success
-            setTimeout(() => {
-                payBtn.style.display = 'none';
-                successMessage.style.display = 'block';
-                
-                // Note: In a real app, this is where you would integrate M-Pesa STK Push
-                // For now, we just show a message to the user.
-            }, 2000);
-        }
-    </script>
-
-</body>
-</html>
-
+            const payBtn = d
